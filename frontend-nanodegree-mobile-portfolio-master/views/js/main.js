@@ -534,14 +534,24 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
-
+window.addEventListener('scroll', function() {
+  window.requestAnimationFrame(updatePositions);
+});
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
+  var pheight = 100;
+  //
+  var sHeight = window.screen.height;
+  var row = Math.floor(sHeight / s);
+  var nPizza = row * cols;
+  var elem;
+
+  var  movPizzas =  document.getElementById("movingPizzas1");
+  //creates moving pizza
+  for (var i = 0; i < nPizza; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
