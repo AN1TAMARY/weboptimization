@@ -1,14 +1,14 @@
 module.exports = function(grunt) {
-	 grunt.initConfig({
-	 	pkg: grunt.file.readJSON('package.json'),
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
 
-	 	uglify: {
-	 		//generate banner comment
-	 		options: {
+        uglify: {
+            //generate banner comment
+            options: {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             target: {
-            	// Grunt will search for "**/*.js" under "src/" when the "uglify" task
+                // Grunt will search for "**/*.js" under "src/" when the "uglify" task
                 // runs and build the appropriate src-dest file mappings then, hence,
                 // no need to update the Gruntfile when files are added or removed.
                 files: [{
@@ -21,9 +21,9 @@ module.exports = function(grunt) {
                     dest: 'dist/'
                 }]
             }
-	 	},
-	 	//Minification of css files
-	 	cssmin: {
+        },
+        //Minification of css files
+        cssmin: {
             target: {
                 files: [{
                     expand: true,
@@ -60,11 +60,11 @@ module.exports = function(grunt) {
                 }]
             }
         }
-	});
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
+    });
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-     grunt.registerTask('default', ['uglify', 'cssmin', 'imagemin', 'copy']);
+    grunt.registerTask('default', ['uglify', 'cssmin', 'imagemin', 'copy']);
 };
